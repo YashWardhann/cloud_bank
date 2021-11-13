@@ -5,13 +5,26 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="css/dashboard.css")
         link(href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700&display=swap" rel="stylesheet")
         script(src="https://kit.fontawesome.com/5e430f0a6b.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js")
         title Dashboard
     body
         main    
-            div.nav 
-                div.header-item(id="username")
+            <div class="nav">
+                <div class="user-settings">
+                    <img src="https://picsum.photos/50" class="user-icon" />
+                    <i class="fas fa-caret-down dropdwown-icon" onclick="toggleUserMenu()"></i>
+                    <div class="user-menu" id="user-menu">
+                        <p>Field A</p>
+                        <p>Field B</p>
+                        <p>Field C</p>
+                        <p>Field A</p>
+                        <p>Field B</p>
+                        <p>Field C</p>
+                    </div>
+                </div>
+            </div>
 
             aside.menu
                 div.logo-container  

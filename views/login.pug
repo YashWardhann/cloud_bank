@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(src="/js/login.js")
+        link(rel="stylesheet", href="css/login.css")
+        link(rel="preconnect" href="https://fonts.gstatic.com")
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;600;700&display=swap")
+        title Login 
+    body   
+        main
+            section.login-container 
+                section.panel-left
+                    div#heading-container
+                        div#heading soumil bank of india
+                        div#sub-heading login to our banking app using your account credentials or face id!
+                    form  
+                        input#email(placeholder="Username" required)
+                        br
+                        input#password(type="password" placeholder="Password" required)
+                        br
+                        br
+                        button#login-button Login to account
+                        div#line
+                            span#text OR 
+                        button#face-button(type="button") Face ID
+                        div#bottom-bar
+                            a(href="signup") Do not have an account?
+                            button#reg-button(type="button") Register
+                section.panel-right
+                    

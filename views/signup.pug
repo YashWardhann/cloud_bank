@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(src="/js/signup.js")
+        link(rel="stylesheet", href="css/signup.css")
+        link(rel="preconnect" href="https://fonts.gstatic.com")
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;600;700&display=swap")
+        title Signup 
+    body   
+        main
+            section.signup-container 
+                section.panel-left
+                    
+                section.panel-right
+                    div#heading-container
+                        div#heading Join Soumil Bank Of India.
+                        div#sub-heading Soumil Bank Of India: Zindagi Ke Saath Bhi, Zindagi Ke Baad Bhi. Join Today. Terms And Conditions Do Not Apply
+                    form
+                        div.input-line    
+                            input#name(type="text" placeholder="Name" required)
+                            input#email(type="email" placeholder="Email" required)
+                        
+                        div.input-line    
+                            input#password(type="password" placeholder="Password" required)
+                            input#confirm-password(type="password" placeholder="Confirm Password" required)
+                        
+                        
+                        button#signup-button Create an account!
+                        br
+                        div#bottom-bar
+                            a(href="login") Already have an account?
+                            button#login-button(type="button") Login

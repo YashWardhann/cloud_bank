@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet",post-answer href="/css/question.css")
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;600;700&display=swap")
+        link(href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet")
+        title Question
+    body
+        main                
+            section.questions
+                a(href="/dashboard" id="back") Go Back
+                div.question-tab   
+                    div.tab-content(id="initial-view")
+                        div.tab-footer
+                            div.tag= question.space
+                            if userCreated === true
+                                div.options
+                                    span#question-edit Edit 
+                                    span#del-ans Delete
+                        div.tab-footer
+                            div.details
+                                span.name= question.creatorName
+                                span.time Asked On 
+                                    span= question.time.toLocaleString()
+                        div.tab-heading= question.title
+                        div.tab-text= question.content
+                        hr.tab-line
+                        div.tab-footer#footer-2
+                            div(class=`${(session.user && question.up.includes(session.user._id)) ? "upvote upvote-active" : "upvote"}` data-qid=question._id) Upvote 
+                                span (
+                                span= question.up.length || 0
+                                span )
+                        
+                            div.ans Answer (
+                                span= question.answer.length || 0
+                                span )
+
+                    if userCreated === true
+                        form.tab-content(id="edit-view")
+                            div.input-heading Question title
+                            input(type="text" id="edit-title" placeholder="Title" value=question.title required)
+                            div.input-heading Question Category
+                            div.input-line
+                                div.option
+                                    input.category(type="radio", name="edit-cat", value="algorithm")
+                                    label(for="algo") Algorithm
+                                div.option
+                                    input.category(type="radio", name="edit-cat", value="machine learning")
+                                    label(for="machine learning") Machine Learning
+                                div.option
+                                    input.category(type="radio", name="edit-cat", value="system")
+                                    label(for="sys") System
+                                div.option
+                                    input.category(type="radio", name="edit-cat", value="javascript")
+                                    label(for="js") Javascript
+                            div.input-heading Question Content
+                            textarea#edit-content(placeholder="Content" required)
+                                = question.content
+                            br
+                            button#edit-ques Confirm 
+                each ans in answer 
+                    div.answer-tab   
+                        div.tab-content
+                            div.tab-footer
+                                div.details
+                                    span.name= ans.uname
+                                    span.time Answered On 
+                                        span= ans.timestamp.toLocaleString()
+                                
+                                if session.user && session.user._id === ans.uid
+                                    div.options
+                                        span.delete(data-aid=ans._id) Delete
+
+                            div.tab-text= ans.content
+                if session.user 
+                    div.answer-tab   
+                        div.tab-content(id="static-view")
+                            div.tab-footer
+                                div.details
+                                    span.name= session.user.name
+                            div.tab-heading(id="label-answer") Post your Answer
+                        div.tab-content(id="answer-view")
+                            form#ans-form
+                                div.tab-footer
+                                    div.details
+                                        span.name= session.user.name
+                                textarea#content-t(placeholder="Post your answer" required)
+                                button#post-answer Post 
+                                button#cancel-answer(type="button") Cancel 
+    script(src="/js/question.js")
+       

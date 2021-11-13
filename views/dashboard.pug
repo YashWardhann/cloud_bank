@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="css/dashboard.css")
+        link(href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet")
+        script(src="https://kit.fontawesome.com/5e430f0a6b.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js")
+        title Dashboard
+    body
+        main    
+            div.nav 
+                div.header-item(id="username")
+
+            aside.menu
+                div.logo-container  
+                    img(class="logo" src="img/logo.png") 
+                div.item-container
+                    div.item(class="selected" id="algorithm") 
+                        i(class="fas fa-house-user")
+                        span Dashboard
+                    div.item(id="machine learning") 
+                        i(class="fas fa-paper-plane")
+                        span Transfer
+                    div.item(id="system")
+                        i(class="fas fa-clipboard-list list-icon")
+                        span Transaction
+                    div.item(id="javascript")
+                        i(class="fas fa-history")
+                        span Login History
+                div.logout-container
+                    button#logout log out
+
+            div.content
+                div.content-container 
+                    span.content-heading account details
+                
+                div.card-container                     
+                    <div class="card">
+                        <div class="card__front card__part">
+                            <img class="card__front-square card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
+                            <img class="card__front-logo card__logo" src="https://www.fireeye.com/partners/strategic-technology-partners/visa-fireeye-cyber-watch-program/_jcr_content/content-par/grid_20_80_full/grid-20-left/image.img.png/1505254557388.png">
+                            <p class="card_numer">**** **** **** 6258</p>
+                            <div class="card__space-75">
+                                <span class="card__label">Card holder</span>
+                                <p class="card__info">John Doe</p>
+                            </div>
+                            <div class="card__space-25">
+                                <span class="card__label">Expires</span>
+                                <p class="card__info">10/25</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card2">
+                        <div class="card__front card__part">
+                            <img class="card__front-square card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
+                            <img class="card__front-logo card__logo" src="https://www.fireeye.com/partners/strategic-technology-partners/visa-fireeye-cyber-watch-program/_jcr_content/content-par/grid_20_80_full/grid-20-left/image.img.png/1505254557388.png">
+                            <p class="card_numer">**** **** **** 6258</p>
+                            <div class="card__space-75">
+                                <span class="card__label">Card holder</span>
+                                <p class="card__info">John Doe</p>
+                            </div>
+                            <div class="card__space-25">
+                                <span class="card__label">Expires</span>
+                                <p class="card__info">10/25</p>
+                            </div>
+                        </div>
+                    </div>
+                
+            //-     if session.user     
+            //-         div.init-tab   
+            //-             div.tab-footer
+            //-                 div.tag userData.name
+            //-             div.tab-heading What is your question?
+            //-             a(href="/ask")
+            //-                 div.post-text Post a new question
+                
+            //-     secton.question-list
+            //-         div.tab-holder 
+            //-             div.question-tab   
+            //-                 div.tab-footer
+            //-                     div.tag auth
+            //-                     div.author Posted by 
+            //-                         span.author-name userData.name
+            //-                 a(href=`question`)
+            //-                     div.tab-heading Sexy Boi Soumil
+            //-                 div.tab-text Bengali Baba
+            //-                 button.see-more See More
+            //-                 hr.tab-line
+            //-                 div.tab-footer#footer-2
+            //-                         span )
+            //-                 div.date Posted At 
+            //-                     span Okla!
+            //-                 section.answers(id="answers")
+                           
+    script(src="/js/dashboard.js")

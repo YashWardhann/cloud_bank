@@ -1,0 +1,4 @@
+use 3322A_Assignment_DB;
+
+
+Then the mongodb database will be created when you run the node app.

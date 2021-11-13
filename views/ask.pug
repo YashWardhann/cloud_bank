@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="css/ask.css")
+        link(href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700;800&display=swap" rel="stylesheet")
+        title Dashboard
+    body
+        main
+        
+            a(href="/dashboard" id="back") Go Back
+            div#content 
+                div.form-header
+                    div#page-title Post  A Question
+                    div#page-subtext Ask any question and get answers from many other users!
+
+                div#form-con      
+                    div.input-heading Enter Question Title
+                    div.input-line
+                        br
+                        input#title(type="text", name="")
+                    
+                    div.input-heading Select Question Category
+                    div.input-line
+                        div.option
+                            input.category(type="radio", name="cat", value="algorithm")
+                            label(for="algo") Algorithm
+                        div.option
+                            input.category(type="radio", name="cat", value="machine learning")
+                            label(for="machine learning") Machine Learning
+                        div.option
+                            input.category(type="radio", name="cat", value="system")
+                            label(for="sys") System
+                        div.option
+                            input.category(type="radio", name="cat", value="javascript")
+                            label(for="js") Javascript
+
+                    div.input-heading Enter question content
+                    div.input-line
+                        textarea#content-t
+
+                    div.input-line(id="button-line")
+                        button#submit-button Post question to forum
+    script(src="/js/ask.js")

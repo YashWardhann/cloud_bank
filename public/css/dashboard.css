@@ -11,11 +11,21 @@ main {
     background-color: #f6f8fa;
 }
 
-.user-icon{
-    
+.user-icon{    
     margin-left: 70px;
     border-radius: 50%;
 }
+
+section {
+    display: none;
+    transition: all 0.5s;
+}
+
+.display-section {
+    display: block;
+}
+
+
 
 .dropdown-icon{
     height: 20px;

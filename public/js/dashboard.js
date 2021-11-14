@@ -1,8 +1,11 @@
 $(".item").click(e => {
     $(".selected").removeClass("selected");
+    $(".display-section").removeClass("display-section");
     $(e.target).addClass("selected");
     const text = $(e.target).children('span');
     $('.content-heading').text(text.text());
+    console.log(`.${text.text().toLowerCase()}`);
+    $(`.${text.text().toLowerCase().replace(/\s/g, "")}`).addClass('display-section');
 });
 
 let displayMenu = false;
@@ -18,7 +21,7 @@ $(document).ready(function() {
 	//Normally set in the title tag of your page.
 	document.title='Simple DataTable';
 	// DataTable initialisation
-	$('#example').DataTable(
+	$('table').DataTable(
 		{
 			"dom": '<"dt-buttons"Bf><"clear">lirtp',
 			"paging": true,

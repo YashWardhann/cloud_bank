@@ -9,8 +9,40 @@ main {
     height: 100vh;
     padding-bottom: 100px;
     background-color: #f6f8fa;
-    
 }
+
+.user-icon{
+    
+    margin-left: 70px;
+    border-radius: 50%;
+}
+
+.dropdown-icon{
+    height: 20px;
+    width: 20px;
+}
+
+.user-settings{
+    float: right;
+    margin-top: 14px;
+    margin-right: 10px;
+}
+
+.user-menu{
+    text-align: center;
+    font-family: 'Raleway';
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 150px;
+    margin-top: 13px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: none;
+}
+
+/* .toggle-user-menu{
+    display: block;
+} */
 
 .logo-container {
     position: relative;

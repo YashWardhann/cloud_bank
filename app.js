@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8080;
 
 const app = express();
 
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const { connect } = require("mongoose");
 
 const server = app.listen(PORT, () => {
@@ -28,14 +28,15 @@ app.set("view engine", "pug");
 app.set("views", "./views");
 
 // Connect to mysql 
-const connection = mysql.createConnection({
-    host: "localhost", 
-    user: "root", 
-    password: "", 
-    database: "facerecognition"
-});
+// const connection = mysql.createConnection({
+//     host: "localhost", 
+//     user: "root", 
+//     password: "", 
+//     database: "facerecognition"
+// });
 
-connection.connect();
+let connection;
+// connection.connect();
 
 app.use(express.static(path.join(__dirname, "public")));
 

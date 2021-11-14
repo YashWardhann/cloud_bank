@@ -6,7 +6,6 @@ $(".item").click(e => {
 });
 
 let displayMenu = false;
-
 const toggleUserMenu = () => {
     let element = document.getElementById('user-menu')
     displayMenu = !displayMenu;

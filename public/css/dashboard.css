@@ -11,11 +11,21 @@ main {
     background-color: #f6f8fa;
 }
 
-.user-icon{
-    
+.user-icon{    
     margin-left: 70px;
     border-radius: 50%;
 }
+
+section {
+    display: none;
+    transition: all 0.5s;
+}
+
+.display-section {
+    display: block;
+}
+
+
 
 .dropdown-icon{
     height: 20px;
@@ -153,7 +163,7 @@ main {
 
 .content-heading {
     position: relative;
-    top: 0;
+    top: -30;
     left: 0;
     font-size: 26px;
     font-weight: 700;
@@ -273,4 +283,10 @@ main {
       letter-spacing: 1px;
       text-transform: uppercase;
     }
-    
+
+    .table-container {
+        position: absolute;
+        top: 170px; 
+        left: 0;
+        width: 85%;
+    }

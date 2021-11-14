@@ -147,13 +147,13 @@ main {
 
 .content-container {
     position: absolute;
-    top: 10%;
+    top: 6%;
     left: 80px;
 }
 
 .content-heading {
     position: relative;
-    top: 0;
+    top: -30;
     left: 0;
     font-size: 26px;
     font-weight: 700;
@@ -165,7 +165,7 @@ main {
 
 .card-container {
     position: relative;
-    top: 120px;
+    top: 100px;
     left: 80px;
 }
 .card {
@@ -272,4 +272,10 @@ main {
       letter-spacing: 1px;
       text-transform: uppercase;
     }
-    
+
+    .table-container {
+        position: absolute;
+        top: 170px; 
+        left: 0;
+        width: 85%;
+    }

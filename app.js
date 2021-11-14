@@ -184,6 +184,10 @@ app.get("/question/:id", async (req, res) => {
     });
 });
 
+app.get("/transaction", async (req, res) => {
+    
+});
+
 app.post("/question", async (req, res) => {
     if (!req.session.authenticated) {
         return res.status(403).json({ message: "UNAUTHORIZED" });

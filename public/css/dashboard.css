@@ -57,7 +57,7 @@ main {
     top: 0; 
     left: 18%;
     width: 82%;
-    height: 80px;
+    height: 60px;
     background-color: #fff;
 }
 
@@ -142,7 +142,7 @@ main {
     left: 18%;
     width: 82%;
     height: 100%;
-    top: 80px;
+    top: 60px;
 }
 
 .content-container {
@@ -165,13 +165,13 @@ main {
 
 .card-container {
     position: relative;
-    top: 100px;
+    top: 90px;
     left: 80px;
 }
 .card {
     position: absolute;
     width: 260px;
-    height: 140px;
+    height: 130px;
     font-family: raleway;
 }
 
@@ -187,7 +187,7 @@ main {
       left: 0;
       display: inline-block;
         width: 260px;
-        height: 140px;
+        height: 130px;
         background: #396afc;  /* fallback for old browsers */
         background: -webkit-linear-gradient(to right, #2948ff, #396afc);  /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(to right, #2948ff, #396afc); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -221,17 +221,18 @@ main {
     }
     
     .card__logo {
-        height: 16px;
+        height: 18px;
     }
     
     .card__front-logo{
           position: absolute;
         top: 18px;
         right: 18px;
+
     }
     .card__square {
         border-radius: 5px;
-        height: 30px;
+        height: 18px;
     }
     
     .card_numer {

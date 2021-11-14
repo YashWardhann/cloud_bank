@@ -1,6 +1,8 @@
 $(".item").click(e => {
     $(".selected").removeClass("selected");
     $(e.target).addClass("selected");
+    const text = $(e.target).children('span');
+    $('.content-heading').text(text.text());
 });
 
 let displayMenu = false;
@@ -32,10 +34,3 @@ $(document).ready(function() {
 		}
 	);
 });
-//transaction id
-// to account
-// from account
-// amount
-// date
-// time
-// search by 

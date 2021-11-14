@@ -194,5 +194,63 @@ html(lang="en")
                                 </tr>
                             </tbody>
                         </table>
+                    <div>
+                        <p>Balance [Current]: $22,000</p>
+                        <p>Balance [Savings]: $22,000</p>
+                        <div class="amount-box">
+                            <div>
+                                <label for="from">
+                                    <p>From:</p>
+                                </label>
+                                <select name="from" id="" class="from-dropdown">
+                                    <option value="Current">Current</option>
+                                    <option value="Savings">Savings</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="to">
+                                    <p>To Account Number</p>
+                                </label>
+                                <input name="to" placeholder="Enter" class="from-dropdown to-account-number">
+                                </input>   
+                            </div>
+                        </div>
+                        <div class="currency-amount">
+                            <div>
+                                <label for="currency">
+                                    <p>Currency:</p>
+                                </label>
+                                <select name="currency" id="" class="from-dropdown">
+                                    <option value="HKD">HKD</option>
+                                    <option value="USD">USD</option>
+                                </select>
+                            </div>
+                            <div>    
+                                <label for="Amount">
+                                    <p>Amount</p>
+                                </label>
+                                <input name="Amount" placeholder="USD" class="from-dropdown amount-input" type="text" />
+                            </div>
+                        </div>
+                        <div class="date-selector">
+                            <p>Choose the date:</p>
+                            <input type="date" class="from-dropdown date-input"></input>
+                        </div>
+                        <hr class="payment-line-divide">
+                        <div>
+                            <p class="payment-box-header"><b>Payment Details</b></p>
+                            <div class="payment-details">
+                                <p>HKD 10000</p>
+                                <i class="fas fa-arrow-circle-right"></i>
+                                <p> Some Random Account </p>
+                            </div>
+                        </div>
+                        <button class="confirm-transfer">
+                            <p>Confirm</p>
+                        </button>
+
+                    </div>
+
+
                            
     script(src="/js/dashboard.js")

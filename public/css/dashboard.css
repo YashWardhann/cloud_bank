@@ -22,7 +22,7 @@ section {
 }
 
 .display-section {
-    display: block;
+    display: hidden;
 }
 
 
@@ -176,6 +176,7 @@ section {
 .card-container {
     position: relative;
     top: 90px;
+    display: block;
     left: 80px;
 }
 .card {
@@ -183,6 +184,30 @@ section {
     width: 260px;
     height: 130px;
     font-family: raleway;
+    display: none;
+}
+
+.from-dropdown{
+    width: 150px;
+    background-color: #ebeced;
+    height: 40px;
+    border-style: solid;
+    padding: 5px 10px;
+    border-color: #ebeced;
+    border-radius: 13px;
+    font-family: 'Raleway';
+    font-size: 18px;
+}
+
+.to-account-number{
+    width: 200px;
+}
+.from-dropdown:focus{
+    outline: none;
+}
+
+.from-dropdown option{
+    font-size: 20px;
 }
 
 .card2 {
@@ -191,9 +216,9 @@ section {
     
     .card__part{
       box-shadow: 1px 1px #aaa3a3;
-        top: 0;
+      top: 0;
       position: absolute;
-    z-index: 1000;
+       z-index: 1000;
       left: 0;
       display: inline-block;
         width: 260px;
@@ -228,6 +253,80 @@ section {
         margin-top: 5px;
         height: 38px;
         background-color: #303030;
+    }
+
+    .amount-input{
+        font-style: 30px;
+        color: #14131e;
+    }
+
+    .date-selector{
+        margin-top: 10px;
+        color: #14131e;
+        display: flex;
+    }
+
+    .date-selector p{
+        margin-top: 7px;
+        font-size: 20px;
+        margin-right: 10px;
+    }
+
+    .amount-box{
+        display: flex;
+    }
+    .amount-box div{
+        margin-right: 30px;
+    }
+
+    .payment-box-header{
+        font-family: 'Raleway';
+        font-size: 20px;
+        margin-left: 390px;
+        color: #14131e;
+    }
+
+    .payment-line-divide{
+        border-style: solid;
+        border-width: 1px;
+        border-color: #eceeef;
+    }
+
+    .currency-amount{
+        margin-left: 350px;
+    }
+
+    .confirm-transfer{
+        background-color: #1fba4a;
+        color: #fff;
+        font-family: 'Raleway';
+        font-size: 20px;
+        height: 50px;
+        width: 150px;
+        border-style: none;
+        cursor: pointer;
+        margin-left: 100px;
+        border-radius: 15px;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .payment-details{
+        display: flex;
+    }
+
+    .payment-details p{
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .payment-details i{
+        margin-left: 40px;
+        margin-right: 40px;
+        font-size: 25px;
+    }
+
+    .date-input{
+        width: 200px;
     }
     
     .card__logo {

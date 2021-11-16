@@ -22,7 +22,7 @@ section {
 }
 
 .display-section {
-    display: hidden;
+    display: none;
 }
 
 
@@ -40,6 +40,7 @@ section {
 
 .transfer-container{
     width: 800px;
+    display: block;
 }
 
 .user-menu{
@@ -71,7 +72,7 @@ section {
     top: 0; 
     left: 18%;
     width: 82%;
-    height: 60px;
+    height: 80px;
     background-color: #fff;
 }
 
@@ -190,6 +191,16 @@ section {
     font-family: raleway;
     display: none;
 }
+
+.payment-details-container-hide{
+    display: none;
+}
+
+.payment-details-container-show{
+    margin-left: -30px;
+}
+
+
 
 .from-dropdown{
     width: 150px;
@@ -327,6 +338,7 @@ section {
     .payment-details p{
         font-size: 20px;
         font-weight: bold;
+        color: black;
     }
 
     .payment-details i{

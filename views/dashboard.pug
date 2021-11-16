@@ -211,7 +211,7 @@ html(lang="en")
                                 <label for="to">
                                     <p>To Account Number</p>
                                 </label>
-                                <input name="to" placeholder="Enter" class="from-dropdown to-account-number">
+                                <input name="to" placeholder="Enter" id="acct-number" class="from-dropdown to-account-number">
                                 </input>   
                             </div>
                         </div>
@@ -220,7 +220,7 @@ html(lang="en")
                                 <label for="currency">
                                     <p>Currency:</p>
                                 </label>
-                                <select name="currency" id="" class="from-dropdown">
+                                <select onchange="retCurrency()" name="currency" id="currency" class="from-dropdown">
                                     <option value="HKD">HKD</option>
                                     <option value="USD">USD</option>
                                 </select>
@@ -229,23 +229,23 @@ html(lang="en")
                                 <label for="Amount">
                                     <p>Amount</p>
                                 </label>
-                                <input name="Amount" placeholder="USD" class="from-dropdown amount-input" type="text" />
+                                <input name="Amount" id="amount" class="from-dropdown amount-input" type="text" />
                             </div>
                         </div>
                         <div class="date-selector">
                             <p>Choose the date:</p>
                             <input type="date" class="from-dropdown date-input"></input>
                         </div>
-                        <button class="confirm-transfer">
+                        <button onclick="togglePaymentDetailsContainer()" class="confirm-transfer">
                             <p>Confirm</p>
                         </button>
                         <hr class="payment-line-divide">
-                        <div>
+                        <div class="payment-details-container-hide" id="payment-details-container">
                             <p class="payment-box-header"><b>Payment Details</b></p>
                             <div class="payment-details">
-                                <p>HKD 10000</p>
+                                <p id="amount-transfer"></p>
                                 <i class="fas fa-arrow-circle-right"></i>
-                                <p> Some Random Account </p>
+                                <p id="account-transfer"></p>
                             </div>
                         </div>
 

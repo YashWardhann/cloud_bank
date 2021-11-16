@@ -193,5 +193,63 @@ html(lang="en")
                                 </tr>
                             </tbody>
                         </table>
+                    <div class="transfer-container">
+                        <p class="balance-disp"><b>Balance [Current]:</b> $22,000</p>
+                        <p style="margin-top: -10px" class="balance-disp"><b>Balance [Savings]:</b> $22,000</p>
+                        <div class="amount-box">
+                            <div>
+                                <label for="from">
+                                    <p>From:</p>
+                                </label>
+                                <select name="from" id="" class="from-dropdown">
+                                    <option value="Current">Current</option>
+                                    <option value="Savings">Savings</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="to">
+                                    <p>To Account Number</p>
+                                </label>
+                                <input name="to" placeholder="Enter" id="acct-number" class="from-dropdown to-account-number">
+                                </input>   
+                            </div>
+                        </div>
+                        <div class="currency-amount">
+                            <div>
+                                <label for="currency">
+                                    <p>Currency:</p>
+                                </label>
+                                <select onchange="retCurrency()" name="currency" id="currency" class="from-dropdown">
+                                    <option value="HKD">HKD</option>
+                                    <option value="USD">USD</option>
+                                </select>
+                            </div>
+                            <div>    
+                                <label for="Amount">
+                                    <p>Amount</p>
+                                </label>
+                                <input name="Amount" id="amount" class="from-dropdown amount-input" type="text" />
+                            </div>
+                        </div>
+                        <div class="date-selector">
+                            <p>Choose the date:</p>
+                            <input type="date" class="from-dropdown date-input"></input>
+                        </div>
+                        <button onclick="togglePaymentDetailsContainer()" class="confirm-transfer">
+                            <p>Confirm</p>
+                        </button>
+                        <hr class="payment-line-divide">
+                        <div class="payment-details-container-hide" id="payment-details-container">
+                            <p class="payment-box-header"><b>Payment Details</b></p>
+                            <div class="payment-details">
+                                <p id="amount-transfer"></p>
+                                <i class="fas fa-arrow-circle-right"></i>
+                                <p id="account-transfer"></p>
+                            </div>
+                        </div>
+
+                    </div>
+
+
                            
     script(src="/js/dashboard.js")

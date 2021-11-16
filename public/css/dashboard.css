@@ -38,6 +38,10 @@ section {
     margin-right: 10px;
 }
 
+.transfer-container{
+    width: 800px;
+}
+
 .user-menu{
     text-align: center;
     font-family: 'Raleway';
@@ -194,7 +198,7 @@ section {
     border-style: solid;
     padding: 5px 10px;
     border-color: #ebeced;
-    border-radius: 13px;
+    border-radius: 10px;
     font-family: 'Raleway';
     font-size: 18px;
 }
@@ -279,6 +283,10 @@ section {
         margin-right: 30px;
     }
 
+    .balance-disp{
+        margin-left: 320px;
+    }
+
     .payment-box-header{
         font-family: 'Raleway';
         font-size: 20px;
@@ -290,6 +298,8 @@ section {
         border-style: solid;
         border-width: 1px;
         border-color: #eceeef;
+        margin-left: 150px;
+        margin-right: 150px;
     }
 
     .currency-amount{

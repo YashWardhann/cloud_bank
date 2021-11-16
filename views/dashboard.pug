@@ -194,9 +194,9 @@ html(lang="en")
                                 </tr>
                             </tbody>
                         </table>
-                    <div>
-                        <p>Balance [Current]: $22,000</p>
-                        <p>Balance [Savings]: $22,000</p>
+                    <div class="transfer-container">
+                        <p class="balance-disp"><b>Balance [Current]:</b> $22,000</p>
+                        <p style="margin-top: -10px" class="balance-disp"><b>Balance [Savings]:</b> $22,000</p>
                         <div class="amount-box">
                             <div>
                                 <label for="from">
@@ -236,6 +236,9 @@ html(lang="en")
                             <p>Choose the date:</p>
                             <input type="date" class="from-dropdown date-input"></input>
                         </div>
+                        <button class="confirm-transfer">
+                            <p>Confirm</p>
+                        </button>
                         <hr class="payment-line-divide">
                         <div>
                             <p class="payment-box-header"><b>Payment Details</b></p>
@@ -245,9 +248,6 @@ html(lang="en")
                                 <p> Some Random Account </p>
                             </div>
                         </div>
-                        <button class="confirm-transfer">
-                            <p>Confirm</p>
-                        </button>
 
                     </div>
 

@@ -10,9 +10,42 @@ main {
     background-color: #f6f8fa;
 }
 
+.card3{
+    position: absolute;
+    left: 840px;
+    top: -150px;
+    padding-top: 25px;
+    height: 900px;
+    width: 22%;
+    background-color: #fff;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: #ebeced;
+}
+
+.side-details{
+    border-top: solid 1px #ebeced;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-family: 'Raleway';
+}
+
+.side-details p b{
+    color: #eb4d4b;
+}
+
+.title-details{
+    text-align: center;
+}
+
 .user-icon{    
-    width: 48px;
-    margin-left: 70px;
+    width: 130px;
+    height: 130px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    display: block;
+    /* margin-left: 70px; */
     border-radius: 50%;
 }
 

@@ -1,7 +1,5 @@
 $(document).ready(async function() {
-
-	const username = localStorage.getItem('username');
-
+	const username = localStorage.getItem('username') || "Aryak Kumar";
 	// Get the user data 
 	const userData = (await execQuery(`SELECT * FROM customer WHERE name='${username}'`))[0];
 	console.log(userData);
@@ -10,7 +8,7 @@ $(document).ready(async function() {
 	const accountData = await execQuery(`SELECT * FROM accounts WHERE user_id='${userData.customer_id}'`);
 	console.log(accountData);
 
-	const transactionsData = await execQuery(`SELECT * FROM transactions WHERE from_account='${accountData[0].account_id}'`);
+	const transactionsData = await execQuery(`SELECT * FROM transactions WHERE to_account='${accountData[1].account_number}' OR from_account='${accountData[1].account_number}'`);
 	console.log(transactionsData);
 
 	// Get login history 
@@ -36,6 +34,7 @@ $(document).ready(async function() {
 
 	// Render the transaction data 
 	for (let transaction of transactionsData) {	
+		
 		const date = new Date(transaction.time);
 		document.querySelector(".transactions table tbody").innerHTML += `
 		<tr>
@@ -58,9 +57,29 @@ $(document).ready(async function() {
 				<td>${date.toLocaleTimeString('en-US')}</td>
 			</tr>
 			`;
-		}
-});
+	}
 
+	
+$('.confirm-transfer').click(async function() {
+	const fromAccountType = $(".from-dropdown").val();
+	const toAccount = $("#acct-number").val();
+	const currency = $("#currency").val();
+	const amount = $("#amount").val();
+
+	let fromAccount; 
+	for (let data of accountData) {
+		console.log(data);
+		if (data.account_type === fromAccountType.toLowerCase()) {
+			fromAccount = data.account_number;
+			break;
+		}
+	}
+
+	// Generate the SQL statement 
+	const sqlQuery = `INSERT INTO transactions VALUES('2', '${fromAccount}', '${toAccount}', '${amount}', '${currency}', '${Date.now()}')`;
+	const res = await execQuery(sqlQuery);
+	alert("Transfer is successful!");
+});
 
 $(".item").click(e => {
     $(".selected").removeClass("selected");
@@ -145,3 +164,6 @@ const togglePaymentDetailsContainer = () => {
 	}
 
 }
+
+});
+

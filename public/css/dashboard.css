@@ -10,9 +10,60 @@ main {
     background-color: #f6f8fa;
 }
 
+.card3{
+    position: absolute;
+    left: 840px;
+    top: -150px;
+    padding-top: 25px;
+    height: 900px;
+    width: 22%;
+    background-color: #fff;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: #ebeced;
+}
+
+.side-details{
+    border-top: solid 1px #ebeced;
+}
+
+.top-details{
+    padding: 10px 15px;
+    font-family: 'Raleway';
+}
+
+.top-details p{
+    text-align: center;
+    line-height: 6px;
+}
+
+.account-number-side{
+    color: #757575
+}
+
+
+.side-details p{
+    line-height: 10px;
+}
+.side-details p b{
+    color: #eb4d4b;
+}
+
+.title-details{
+    text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 15px;
+}
+
 .user-icon{    
-    width: 48px;
-    margin-left: 70px;
+    width: 130px;
+    height: 130px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -10px;
+    display: block;
+    /* margin-left: 70px; */
     border-radius: 50%;
 }
 
@@ -414,13 +465,7 @@ section {
         left: 0;
         width: 85%;
     }
-
-    .balance-details {
-        width: 100px; 
-        height: 100px; 
-        background: #fff;
-    }
-
+    
     .dashboard {
         position: relative;
         top: 200px;
@@ -428,4 +473,34 @@ section {
         height: 220px; 
         border-radius: 20px;
         background: #fff;
+    }
+
+    .balance-details { 
+        background: #fff;
+    }
+
+    .balance-details table {
+        left: 0;
+        font-family: 'Raleway';
+        top: 0;
+        position: absolute;
+        border-right-color: #ffffff;
+        font-size: 18px;
+        border-collapse: colla
+    }
+
+    .balance-details table th, td {
+        padding: 16px 24px;
+        text-align: center;
+    }
+
+    .balance-details table th {
+        background-color: #eb4d4b;
+        color: #fff;
+        width: 25%;
+    }
+
+    .balance-details table tbody tr{
+        background-color: #f8f9fa;
+        text-align: center;
     }

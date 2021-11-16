@@ -35,7 +35,7 @@ const connection = mysql.createConnection({
     database: "karyak"
 });
 
-connection.connect();
+let connection
 
 app.use(express.static(path.join(__dirname, "public")));
 

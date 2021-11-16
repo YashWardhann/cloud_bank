@@ -22,10 +22,8 @@ section {
 }
 
 .display-section {
-    display: none;
+    display: block;
 }
-
-
 
 .dropdown-icon{
     height: 20px;
@@ -38,9 +36,8 @@ section {
     margin-right: 10px;
 }
 
-.transfer-container{
+.transfer{
     width: 800px;
-    display: block;
 }
 
 .user-menu{
@@ -194,7 +191,6 @@ section {
     width: 260px;
     height: 130px;
     font-family: raleway;
-    display: none;
 }
 
 .payment-details-container-hide{
@@ -205,7 +201,9 @@ section {
     margin-left: -30px;
 }
 
-
+.hide {
+    display: none;
+}
 
 .from-dropdown{
     width: 150px;

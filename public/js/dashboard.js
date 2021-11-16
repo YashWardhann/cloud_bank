@@ -1,12 +1,34 @@
+$(document).ready(async function() {
+	const data = await execQuery("SELECT * FROM customer");
+	console.log(data);
+});
+
 $(".item").click(e => {
     $(".selected").removeClass("selected");
     $(".display-section").removeClass("display-section");
     $(e.target).addClass("selected");
     const text = $(e.target).children('span');
-    
     $('.content-heading').text(text.text());
+	const sectionName = `.${text.text().toLowerCase().replace(/\s/g, "")}`;
+	if (sectionName == ".transfer") {
+		$('.card').css({ "display": "none" });
+	} else {
+		$('.card').css({ "display": "block" });	
+	}
     $(`.${text.text().toLowerCase().replace(/\s/g, "")}`).addClass('display-section');
 });
+
+async function execQuery(query) {
+	return new Promise(async (resolve, reject) => {
+		const response = await fetch("query", {
+			method: "POST", 
+			body: JSON.stringify({ query: query })
+		});
+
+		const responseBody = await response.json();
+		console.log(responseBody);
+	});
+}
 
 let displayMenu = false;
 const toggleUserMenu = () => {
@@ -20,21 +42,21 @@ $(document).ready(function() {
 	//Normally set in the title tag of your page.
 	document.title='Simple DataTable';
 	// DataTable initialisation
-	$('table').DataTable(
-		{
-			"dom": '<"dt-buttons"Bf><"clear">lirtp',
-			"paging": true,
-			"autoWidth": true,
-			"buttons": [
-				'colvis',
-				'copyHtml5',
-        'csvHtml5',
-				'excelHtml5',
-        'pdfHtml5',
-				'print'
-			]
-		}
-	);
+	// $('table').DataTable(
+	// 	{
+	// 		"dom": '<"dt-buttons"Bf><"clear">lirtp',
+	// 		"paging": true,
+	// 		"autoWidth": true,
+	// 		"buttons": [
+	// 			'colvis',
+	// 			'copyHtml5',
+    //     'csvHtml5',
+	// 			'excelHtml5',
+    //     'pdfHtml5',
+	// 			'print'
+	// 		]
+	// 	}
+	// );
 });
 
 const retCurrency = () => {

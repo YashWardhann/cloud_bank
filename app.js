@@ -28,14 +28,16 @@ app.set("view engine", "pug");
 app.set("views", "./views");
 
 // Connect to mysql 
-const connection = mysql.createConnection({
-    host: "localhost", 
-    user: "root", 
-    password: "", 
-    database: "facerecognition"
-});
+// const connection = mysql.createConnection({
+//     host: "localhost", 
+//     user: "root", 
+//     password: "", 
+//     database: "facerecognition"
+// });
 
-connection.connect();
+// connection.connect();
+
+let connection
 
 app.use(express.static(path.join(__dirname, "public")));
 

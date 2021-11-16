@@ -414,13 +414,7 @@ section {
         left: 0;
         width: 85%;
     }
-
-    .balance-details {
-        width: 100px; 
-        height: 100px; 
-        background: #fff;
-    }
-
+    
     .dashboard {
         position: relative;
         top: 200px;
@@ -428,4 +422,34 @@ section {
         height: 220px; 
         border-radius: 20px;
         background: #fff;
+    }
+
+    .balance-details { 
+        background: #fff;
+    }
+
+    .balance-details table {
+        left: 0;
+        font-family: 'Raleway';
+        top: 0;
+        position: absolute;
+        border-right-color: #ffffff;
+        font-size: 18px;
+        border-collapse: colla
+    }
+
+    .balance-details table th, td {
+        padding: 16px 24px;
+        text-align: center;
+    }
+
+    .balance-details table th {
+        background-color: #eb4d4b;
+        color: #fff;
+        width: 25%;
+    }
+
+    .balance-details table tbody tr{
+        background-color: #f8f9fa;
+        text-align: center;
     }

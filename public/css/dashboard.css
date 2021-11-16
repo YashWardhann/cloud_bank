@@ -461,9 +461,9 @@ section {
 
     .table-container {
         position: absolute;
-        top: 170px; 
-        left: 0;
-        width: 85%;
+        top: 170px;
+        left: -29px;
+        width: 68%;
     }
     
     .dashboard {
@@ -485,19 +485,19 @@ section {
         top: 0;
         position: absolute;
         border-right-color: #ffffff;
-        font-size: 18px;
+        font-size: 16px;
         border-collapse: colla
     }
 
     .balance-details table th, td {
-        padding: 16px 24px;
+        padding: 16px 12px;
         text-align: center;
     }
 
     .balance-details table th {
         background-color: #eb4d4b;
         color: #fff;
-        width: 25%;
+        width: 17%;
     }
 
     .balance-details table tbody tr{

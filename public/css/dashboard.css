@@ -7,11 +7,11 @@ main {
     left: 0;
     width: 100vw;
     height: 100vh;
-    padding-bottom: 100px;
     background-color: #f6f8fa;
 }
 
 .user-icon{    
+    width: 48px;
     margin-left: 70px;
     border-radius: 50%;
 }
@@ -50,9 +50,6 @@ section {
     display: none;
 }
 
-/* .toggle-user-menu{
-    display: block;
-} */
 
 .logo-container {
     position: relative;
@@ -67,7 +64,7 @@ section {
     top: 0; 
     left: 18%;
     width: 82%;
-    height: 60px;
+    height: 80px;
     background-color: #fff;
 }
 
@@ -89,13 +86,19 @@ section {
 
 .menu .item {
     position: relative;
-    left: 23%;
-    margin-top: 32px;
+    left: 0%;
+    width: 100%;
+    transition: all 0.175s;
+    margin-top: 4px;
     font-size: 12px;
     font-family: raleway;
     text-transform: uppercase;
     font-weight: 600;
     cursor: pointer;
+    box-sizing: border-box;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 24%;
 }
 
 .logout-container {
@@ -118,7 +121,7 @@ section {
     cursor: pointer;
     width: 100%;
     height: 100%;
-    background: #285fec;
+    background: #eb4d4b;
     border: none;
     font-family: raleway;
     text-transform: uppercase;
@@ -134,7 +137,9 @@ section {
 }
 
 .selected {
-    color: #285fec !important;
+    background-color: #eb4d4b;
+    color: white;
+    border-left: 4px solid #eb4d4b;
 }
 
 
@@ -144,7 +149,7 @@ section {
 
 .item span {
     position: relative;
-    left: 24px;
+    left: 28px;
 }
 
 .content {
@@ -231,7 +236,7 @@ section {
     }
     
     .card__logo {
-        height: 18px;
+        height: 24px;
     }
     
     .card__front-logo{
@@ -242,7 +247,7 @@ section {
     }
     .card__square {
         border-radius: 5px;
-        height: 18px;
+        height: 24px;
     }
     
     .card_numer {
@@ -289,4 +294,19 @@ section {
         top: 170px; 
         left: 0;
         width: 85%;
+    }
+
+    .balance-details {
+        width: 100px; 
+        height: 100px; 
+        background: #fff;
+    }
+
+    .dashboard {
+        position: relative;
+        top: 200px;
+        width: 80%; 
+        height: 220px; 
+        border-radius: 20px;
+        background: #fff;
     }

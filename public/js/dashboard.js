@@ -3,8 +3,8 @@ $(".item").click(e => {
     $(".display-section").removeClass("display-section");
     $(e.target).addClass("selected");
     const text = $(e.target).children('span');
+    
     $('.content-heading').text(text.text());
-    console.log(`.${text.text().toLowerCase()}`);
     $(`.${text.text().toLowerCase().replace(/\s/g, "")}`).addClass('display-section');
 });
 

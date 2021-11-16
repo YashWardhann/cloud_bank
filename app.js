@@ -28,15 +28,14 @@ app.set("view engine", "pug");
 app.set("views", "./views");
 
 // Connect to mysql 
-// const connection = mysql.createConnection({
-//     host: "localhost", 
-//     user: "root", 
-//     password: "", 
-//     database: "facerecognition"
-// });
+const connection = mysql.createConnection({
+    host: "localhost", 
+    user: "root", 
+    password: "", 
+    database: "facerecognition"
+});
 
-let connection;
-// connection.connect();
+connection.connect();
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -44,6 +43,20 @@ app.use((req, res, next) => {
     res.locals.session = req.session;
     console.log(`Incoming ${req.method} to ${req.url}`);
     return next();
+});
+
+app.post("/query", async (req, res) => {
+    try {
+        console.log(req.body);
+        connection.query(req.body.query, (err, results, fields) => {
+            if (err) throw new Error(err);
+            console.log(results);
+            return res.status(200).json( { data: JSON.stringify(results) } );
+        });
+    } catch (e) {
+        console.error(e);
+        return res.status(500).json( { message: "ERROR" } );
+    }
 });
 
 app.get('/face-login', async (req, res) => {

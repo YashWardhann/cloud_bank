@@ -25,17 +25,35 @@ main {
 
 .side-details{
     border-top: solid 1px #ebeced;
-    padding-left: 15px;
-    padding-right: 15px;
+}
+
+.top-details{
+    padding: 10px 15px;
     font-family: 'Raleway';
 }
 
+.top-details p{
+    text-align: center;
+    line-height: 6px;
+}
+
+.account-number-side{
+    color: #757575
+}
+
+
+.side-details p{
+    line-height: 10px;
+}
 .side-details p b{
     color: #eb4d4b;
 }
 
 .title-details{
     text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 15px;
 }
 
 .user-icon{    
@@ -43,7 +61,7 @@ main {
     height: 130px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 50px;
+    margin-bottom: -10px;
     display: block;
     /* margin-left: 70px; */
     border-radius: 50%;

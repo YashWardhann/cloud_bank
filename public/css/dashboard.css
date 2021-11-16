@@ -400,7 +400,7 @@ section {
     
     .card__info {
         margin-bottom: 0;
-        margin-top: 5px;
+        margin-top: 0px;
         font-size: 16px;
         line-height: 18px;
         color: #fff;

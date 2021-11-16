@@ -1,7 +1,66 @@
 $(document).ready(async function() {
-	const data = await execQuery("SELECT * FROM customer");
-	console.log(data);
+
+	const username = localStorage.getItem('username');
+
+	// Get the user data 
+	const userData = (await execQuery(`SELECT * FROM customer WHERE name='${username}'`))[0];
+	console.log(userData);
+	
+	// Get account data 
+	const accountData = await execQuery(`SELECT * FROM accounts WHERE user_id='${userData.customer_id}'`);
+	console.log(accountData);
+
+	const transactionsData = await execQuery(`SELECT * FROM transactions WHERE from_account='${accountData[0].account_id}'`);
+	console.log(transactionsData);
+
+	// Get login history 
+	const loginHistory = await execQuery(`SELECT * FROM login_history WHERE user_id='${userData.customer_id}'`);
+	console.log(loginHistory);
+
+	let cardNumber = String(accountData[0].account_number);
+	let newString = "";
+	
+	let i = 0;
+
+	for (let char of cardNumber) {
+		if (i % 4 == 0) {
+			newString += " ";
+		}	
+		newString += char;
+		i+=1;
+	}
+
+	// Render the card info 
+	$('.card_holder').text(userData.name);
+	$('.card_number').text(newString);
+
+	// Render the transaction data 
+	for (let transaction of transactionsData) {	
+		const date = new Date(transaction.time);
+		document.querySelector(".transactions table tbody").innerHTML += `
+		<tr>
+			<td>${transaction.trans_id}</td>
+			<td>${transaction.from_account}</td>
+			<td>${transaction.to_account}</td>
+			<td>${transaction.amount}</td>
+			<td>${date.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</td>
+			<td>${date.toLocaleTimeString('en-US')}</td>
+		</tr>
+		`;
+	}
+
+	// Render the login data 
+	for (let login of loginHistory) {
+		const date = new Date(login.time);	
+		document.querySelector(".loginhistory table tbody").innerHTML += `
+			<tr>
+				<td>${date.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</td>
+				<td>${date.toLocaleTimeString('en-US')}</td>
+			</tr>
+			`;
+		}
 });
+
 
 $(".item").click(e => {
     $(".selected").removeClass("selected");
@@ -22,11 +81,13 @@ async function execQuery(query) {
 	return new Promise(async (resolve, reject) => {
 		const response = await fetch("query", {
 			method: "POST", 
+			headers: {
+				"Content-Type": "application/json"
+			},
 			body: JSON.stringify({ query: query })
 		});
-
 		const responseBody = await response.json();
-		console.log(responseBody);
+		resolve(JSON.parse(responseBody.data));
 	});
 }
 

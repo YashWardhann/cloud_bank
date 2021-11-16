@@ -32,7 +32,7 @@ const connection = mysql.createConnection({
     host: "localhost", 
     user: "root", 
     password: "", 
-    database: "facerecognition"
+    database: "karyak"
 });
 
 connection.connect();

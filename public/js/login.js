@@ -58,6 +58,7 @@ window.onload = function() {
 
             if (statusCode === 200) {
                 alert("You have been logged in!");
+                localStorage.setItem('username', emailField.value);
                 window.location.href = "dashboard";
             } else {
                 switch(message) {

@@ -1,7 +1,30 @@
 $(document).ready(async function() {
+	
+	setInterval(() => {
+		$(".interest_hkd").text(`${interestHKD}`);
+	}, 3000);
+
+
+	const username = "Aryak Kumar";
+	// Get the user data 
+	const userData = (await execQuery(`SELECT * FROM customer WHERE \`info.name\`='${username}'`))[0];
+	console.log(userData);
+
+	
+	
+	
+	let currentAccountID;
+	let savingAccountID; 
+
+	// Get current account details 
+	let savingBalanceHKD = (await execQuery(`SELECT \`balance.hkd\` FROM savings WHERE customer_id='${userData.customer_id}'`))[0];
+	console.log(savingBalanceHKD);
+
+	const interestHKD = Math.round(Number(savingBalanceHKD["balance.hkd"]) * 0.012);
+
 	let timerInterval
 	Swal.fire({
-	title: 'Welcome Yash!',
+	title: `Welcome ${userData['info.name']}!`,
 	timer: 2000,
 	timerProgressBar: true,
 	didOpen: () => {
@@ -19,32 +42,22 @@ $(document).ready(async function() {
 	if (result.dismiss === Swal.DismissReason.timer) {
 		Swal.fire(
 			'Interest Recieved!',
-			'Interest Amount Recieved: HKD210.00',
+			`Interest Amount Recieved: $${interestHKD}`,
 			'success'
 		)	
 	}
-	})
-
-	setInterval(() => {
-		$(".interest_hkd").text("HKD210.00");
-	}, 3000);
-
-
-	const username = "Aryak Kumar";
-	// Get the user data 
-	const userData = (await execQuery(`SELECT * FROM customer WHERE \`info.name\`='${username}'`))[0];
-	console.log(userData);
+	});
 	
-	
-	let currentAccountID;
-	let savingAccountID; 
-
 	// Get current account details 
 	const currentAccountDetails =(await execQuery(`SELECT * FROM current WHERE customer_id='${userData.customer_id}'`))[0];
-	const savingAccountDetails = (await execQuery(`SELECT * FROM savings WHERE customer_id='${userData.customer_id}'`))[0];
+	savingAccountDetails = (await execQuery(`SELECT * FROM savings WHERE customer_id='${userData.customer_id}'`))[0];
 
 	currentAccountID = currentAccountDetails.account_num;
 	savingAccountID = savingAccountDetails.account_num;
+	
+
+	let interestQuery = `UPDATE savings SET \`balance.hkd\` = \`balance.hkd\`+${interestHKD} WHERE customer_id='${userData.customer_id}'`;
+	await execQuery(interestQuery);
 
 	console.log(currentAccountDetails);
 	console.log(savingAccountDetails);

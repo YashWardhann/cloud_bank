@@ -1,7 +1,8 @@
 $(document).ready(async function() {
 	
 	setInterval(() => {
-		$(".interest_hkd").text(`${interestHKD}`);
+		$(".interest_hkd").text(`$${interestHKD}`);
+		$(".interest_usd").text(`$${interestUSD}`);
 	}, 3000);
 
 
@@ -20,7 +21,13 @@ $(document).ready(async function() {
 	let savingBalanceHKD = (await execQuery(`SELECT \`balance.hkd\` FROM savings WHERE customer_id='${userData.customer_id}'`))[0];
 	console.log(savingBalanceHKD);
 
+	// Get current account details 
+	let savingBalanceUSD = (await execQuery(`SELECT \`balance.usd\` FROM savings WHERE customer_id='${userData.customer_id}'`))[0];
+	console.log(savingBalanceUSD);
+
+
 	const interestHKD = Math.round(Number(savingBalanceHKD["balance.hkd"]) * 0.012);
+	const interestUSD = Math.round(Number(savingBalanceUSD["balance.usd"]) * 0.012);
 
 	let timerInterval
 	Swal.fire({
@@ -42,7 +49,7 @@ $(document).ready(async function() {
 	if (result.dismiss === Swal.DismissReason.timer) {
 		Swal.fire(
 			'Interest Recieved!',
-			`Interest Amount Recieved: $${interestHKD}`,
+			`Interest Amount Recieved: HK$${interestHKD} & US$${interestUSD}`,
 			'success'
 		)	
 	}
@@ -56,7 +63,7 @@ $(document).ready(async function() {
 	savingAccountID = savingAccountDetails.account_num;
 	
 
-	let interestQuery = `UPDATE savings SET \`balance.hkd\` = \`balance.hkd\`+${interestHKD} WHERE customer_id='${userData.customer_id}'`;
+	let interestQuery = `UPDATE savings SET \`balance.hkd\` = \`balance.hkd\`+${interestHKD}, \`balance.usd\` = \`balance.usd\`+${interestUSD} WHERE customer_id='${userData.customer_id}'`;
 	await execQuery(interestQuery);
 
 	console.log(currentAccountDetails);
@@ -191,7 +198,7 @@ $('.confirm-transfer').click(async function() {
 	$(".current_balance_hkd").text(`$${currentAccountDetails['balance.hkd']}`);
 	$(".savings_balance_hkd").text(`$${savingAccountDetails['balance.hkd']}`);
 	$(".current_balance_usd").text(`$${currentAccountDetails['balance.usd']}`);
-	$(".savings_balance_usd").text(`$${currentAccountDetails['balance.usd']}`);
+	$(".savings_balance_usd").text(`$${savingAccountDetails['balance.usd']}`);
 });
 
 $(document).keypress(async (e) => {

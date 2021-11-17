@@ -41,6 +41,8 @@ main {
     color: #757575
 }
 
+.to-account-number
+
 
 .side-details p{
     line-height: 10px;
@@ -232,7 +234,7 @@ section {
 }
 
 table {
-    top: 48px !important;
+    top: 65px !important;
 }
 .card-container {
     position: relative;
@@ -274,6 +276,7 @@ table {
 
 .to-account-number{
     width: 200px;
+    height: 28px;
 }
 .from-dropdown:focus{
     outline: none;
@@ -337,19 +340,27 @@ table {
         margin-top: 10px;
         color: #14131e;
         display: flex;
+        margin-left: 200px;
     }
 
     .date-selector p{
-        margin-top: 7px;
+        margin-top: 17px;
+        font-family: 'Raleway';
         font-size: 20px;
         margin-right: 10px;
     }
 
     .amount-box{
+        margin-left: 200px;
         display: flex;
     }
     .amount-box div{
         margin-right: 30px;
+    }
+
+    .amount-box div label p{
+        font-family: 'Raleway';
+        color: black;
     }
 
     .balance-disp{
@@ -372,8 +383,25 @@ table {
     }
 
     .currency-amount{
-        margin-left: 350px;
+        margin-left: 330px;
     }
+
+    .currency-amount div label p{
+        font-family: 'Raleway';
+        color: black;
+    }
+
+    .currency-amount div select{
+        margin-left: -35px;
+    }
+
+    .currency-amount div input{
+        margin-left: -45px;
+        height: 28px;
+    }
+
+
+
 
     .confirm-transfer{
         background-color: #1fba4a;
@@ -384,9 +412,14 @@ table {
         width: 150px;
         border-style: none;
         cursor: pointer;
-        margin-left: 100px;
+        margin-top: 30px;
+        margin-left: 300px;
         border-radius: 15px;
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .confirm-transfer p{
+        line-height: 0px;
     }
 
     .payment-details{
@@ -471,15 +504,17 @@ table {
     }
 
     .sort-by-section{   
-        margin-top: 100px;
+        position: relative;
+        margin-top: 12px;
         width: fit-content;
         margin-left: auto;
         margin-right: auto;
+        margin-bottom: 30px;
     }
 
     .sort-by-section input{
         background-color: white;
-        border-style: none;
+        border: solid 1px #eb4d4b;
         padding: 10px 5px;
         border-radius: 5px;
         cursor: pointer;
@@ -487,7 +522,7 @@ table {
 
     .sort-by-section select{
         background-color: white;
-        border-style: none;
+        border: solid 1px #eb4d4b;
         padding: 10px 5px;
         border-radius: 5px;
         cursor: pointer;

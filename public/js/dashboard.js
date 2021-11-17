@@ -1,44 +1,67 @@
 $(document).ready(async function() {
-	const username = localStorage.getItem('username') || "Aryak Kumar";
+	let timerInterval
+	Swal.fire({
+	title: 'Welcome Yash!',
+	timer: 2000,
+	timerProgressBar: true,
+	didOpen: () => {
+		Swal.showLoading()
+		const b = Swal.getHtmlContainer().querySelector('b')
+		timerInterval = setInterval(() => {
+		b.textContent = Swal.getTimerLeft()
+		}, 100)
+	},
+	willClose: () => {
+		clearInterval(timerInterval)
+	}
+	}).then((result) => {
+	/* Read more about handling dismissals below */
+	if (result.dismiss === Swal.DismissReason.timer) {
+		Swal.fire(
+			'Interest Recieved!',
+			'Interest Amount Recieved: HKD210.00',
+			'success'
+		)	
+	}
+	})
+
+	setInterval(() => {
+		$(".interest_hkd").text("HKD210.00");
+	}, 3000);
+
+
+	const username = "Aryak Kumar";
 	// Get the user data 
-	const userData = (await execQuery(`SELECT * FROM customer WHERE name='${username}'`))[0];
+	const userData = (await execQuery(`SELECT * FROM customer WHERE \`info.name\`='${username}'`))[0];
 	console.log(userData);
 	
-	// Get account data 
-	const accountData = await execQuery(`SELECT * FROM accounts WHERE user_id='${userData.customer_id}'`);
 	
 	let currentAccountID;
 	let savingAccountID; 
 
-	for (let data of accountData) {
-		if (data.account_type === "savings") {
-			savingAccountID = data.account_number;
-		} 
-		if (data.account_type === "current") {
-			currentAccountID = data.account_number;
-		}
-	}
-
 	// Get current account details 
-	const currentAccountDetails = (await execQuery(`SELECT * FROM current WHERE account_number='${currentAccountID}'`))[0];
-	const savingAccountDetails = (await execQuery(`SELECT * FROM savings WHERE account_number='${savingAccountID}'`))[0];
+	const currentAccountDetails =(await execQuery(`SELECT * FROM current WHERE customer_id='${userData.customer_id}'`))[0];
+	const savingAccountDetails = (await execQuery(`SELECT * FROM savings WHERE customer_id='${userData.customer_id}'`))[0];
+
+	currentAccountID = currentAccountDetails.account_num;
+	savingAccountID = savingAccountDetails.account_num;
 
 	console.log(currentAccountDetails);
 	console.log(savingAccountDetails);
 
-	const transactionsData = await execQuery(`SELECT * FROM transactions WHERE to_account='${accountData[1].account_number}' OR from_account='${accountData[1].account_number}'`);
+	const transactionsData = await execQuery(`SELECT * FROM transactions WHERE to_account='${currentAccountDetails.account_num}' OR from_account='${currentAccountDetails.account_num}'`);
 	console.log(transactionsData);
 
 	// Get login history 
-	const loginHistory = await execQuery(`SELECT * FROM login_history WHERE user_id='${userData.customer_id}'`);
+	const loginHistory = await execQuery(`SELECT * FROM login WHERE customer_id='${userData.customer_id}'`);
 	console.log(loginHistory);
 
-	$(".current_balance_hkd").text(`$${currentAccountDetails.balance_hkd}`);
-	$(".savings_balance_hkd").text(`$${savingAccountDetails.balance_hkd}`);
-	$(".current_balance_usd").text(`$${currentAccountDetails.balance_usd}`);
-	$(".savings_balance_usd").text(`$${currentAccountDetails.balance_hkd}`);
+	$(".current_balance_hkd").text(`$${currentAccountDetails['balance.hkd']}`);
+	$(".savings_balance_hkd").text(`$${savingAccountDetails['balance.hkd']}`);
+	$(".current_balance_usd").text(`$${currentAccountDetails['balance.usd']}`);
+	$(".savings_balance_usd").text(`$${currentAccountDetails['balance.usd']}`);
 
-	let cardNumber = String(accountData[0].account_number);
+	let cardNumber = String(currentAccountDetails.account_num);
 	let newString = "";
 	
 	let i = 0;
@@ -52,7 +75,7 @@ $(document).ready(async function() {
 	}
 
 	// Render the card info 
-	$('.card_holder').text(userData.name);
+	$('.card_holder').text(userData['info.name']);
 	$('.card_number').text(newString);
 
 	// Render the transaction data 
@@ -65,6 +88,7 @@ $(document).ready(async function() {
 			<td>${transaction.from_account}</td>
 			<td>${transaction.to_account}</td>
 			<td>${transaction.amount}</td>
+			<td>${transaction.currency.toUpperCase()}</td>
 			<td>${date.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</td>
 			<td>${date.toLocaleTimeString('en-US')}</td>
 		</tr>
@@ -82,6 +106,34 @@ $(document).ready(async function() {
 			`;
 	}
 
+
+	
+const retCurrency = () => {
+	let amountTag = document.getElementById('amount')
+	amountTag.placeholder = document.getElementById('currency').value
+}
+
+const togglePaymentDetailsContainer = () => {
+	let paymentDetailsContainer = document.getElementById('payment-details-container');
+	
+	let amount = document.getElementById('amount').value
+	let acctNumber = document.getElementById('acct-number').value;
+
+	let paraAmount = document.getElementById('amount-transfer')
+	paraAmount.appendChild(document.createTextNode(document.getElementById('currency').value))
+	paraAmount.appendChild(document.createTextNode(amount))
+
+	let paraAccountNumber = document.getElementById('account-transfer')
+	paraAccountNumber.appendChild(document.createTextNode(acctNumber))
+	
+	if(paymentDetailsContainer.classList.contains("payment-details-container-hide")) 
+	{
+		paymentDetailsContainer.classList.remove("payment-details-container-hide")
+		paymentDetailsContainer.classList.add("payment-details-container-show")
+	}
+
+}
+
 	
 $('.confirm-transfer').click(async function() {
 	const fromAccountType = $(".from-dropdown").val().toLowerCase();
@@ -98,21 +150,65 @@ $('.confirm-transfer').click(async function() {
 	}
 
 	// Generate the SQL statement 
-	let sqlQuery = `INSERT INTO transactions VALUES('5', '${fromAccount}', '${toAccount}', '${amount}', '${currency}', '${Date.now()}')`;
+	let sqlQuery = `INSERT INTO transactions(to_account, from_account, amount, currency, time) VALUES('${fromAccount}', '${toAccount}', '${amount}', '${currency}', '${new Date().toISOString().slice(0, 19).replace('T', ' ')}')`;
 	await execQuery(sqlQuery);
-	alert("Transfer is successful!");
+	
+	Swal.fire(
+		'Success!',
+		'Transfer is successful!',
+		'success'
+	)
 
 
 	// Update the account balances 
-	sqlQuery = `UPDATE savings SET balance_${currency} = balance_${currency} + ${amount} WHERE account_number='${toAccount}'`;
+	sqlQuery = `UPDATE savings SET \`balance.${currency}\` = \`balance.${currency}\`+${amount} WHERE account_num='${toAccount}'`;
 	await execQuery(sqlQuery);
 	
-	sqlQuery = `UPDATE ${fromAccountType} SET balance_${currency} = balance_${currency} - ${amount} WHERE account_number='${fromAccount}'`;
+	sqlQuery = `UPDATE ${fromAccountType} SET \`balance.${currency}\` = \`balance.${currency}\`-${amount} WHERE account_num='${fromAccount}'`;
 	await execQuery(sqlQuery);
 
-	
+	// Get current account details 
+	const currentAccountDetails =(await execQuery(`SELECT * FROM current WHERE customer_id='${userData.customer_id}'`))[0];
+	const savingAccountDetails = (await execQuery(`SELECT * FROM savings WHERE customer_id='${userData.customer_id}'`))[0];
+
+	console.log(currentAccountDetails);
+	console.log(savingAccountDetails);
 
 	
+	$(".current_balance_hkd").text(`$${currentAccountDetails['balance.hkd']}`);
+	$(".savings_balance_hkd").text(`$${savingAccountDetails['balance.hkd']}`);
+	$(".current_balance_usd").text(`$${currentAccountDetails['balance.usd']}`);
+	$(".savings_balance_usd").text(`$${currentAccountDetails['balance.usd']}`);
+});
+
+$(document).keypress(async (e) => {
+	if (e.which === 13) {
+		const searchParam = $("#search").val();
+		const field = $("#searchBy").val();
+
+		let searchQuery = `SELECT * FROM transactions WHERE ${field} = '${searchParam}'`;
+		const data = await execQuery(searchQuery);
+		console.log(data);
+		
+		document.querySelector(".transactions table tbody").innerHTML = "";
+
+		// Render the transaction data 
+		for (let transaction of data) {	
+			const date = new Date(transaction.time);
+			document.querySelector(".transactions table tbody").innerHTML += `
+			<tr>
+				<td>${transaction.trans_id}</td>
+				<td>${transaction.from_account}</td>
+				<td>${transaction.to_account}</td>
+				<td>${transaction.amount}</td>
+				<td>${transaction.currency.toUpperCase()}</td>
+				<td>${date.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</td>
+				<td>${date.toLocaleTimeString('en-US')}</td>
+			</tr>
+			`;
+		}
+	}
+
 });
 
 $(".item").click(e => {
@@ -172,32 +268,6 @@ $(document).ready(function() {
 	// 	}
 	// );
 });
-
-const retCurrency = () => {
-	let amountTag = document.getElementById('amount')
-	amountTag.placeholder = document.getElementById('currency').value
-}
-
-const togglePaymentDetailsContainer = () => {
-	let paymentDetailsContainer = document.getElementById('payment-details-container');
-	
-	let amount = document.getElementById('amount').value
-	let acctNumber = document.getElementById('acct-number').value;
-
-	let paraAmount = document.getElementById('amount-transfer')
-	paraAmount.appendChild(document.createTextNode(document.getElementById('currency').value))
-	paraAmount.appendChild(document.createTextNode(amount))
-
-	let paraAccountNumber = document.getElementById('account-transfer')
-	paraAccountNumber.appendChild(document.createTextNode(acctNumber))
-	
-	if(paymentDetailsContainer.classList.contains("payment-details-container-hide")) 
-	{
-		paymentDetailsContainer.classList.remove("payment-details-container-hide")
-		paymentDetailsContainer.classList.add("payment-details-container-show")
-	}
-
-}
 
 });
 

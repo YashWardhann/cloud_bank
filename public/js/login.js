@@ -32,7 +32,14 @@ window.onload = function() {
 
             if (statusCode == 200) {
                 if (message === "FACE_RECOGNIZED") {
-                    alert("Face has been recognized!");
+                    await execQuery(`INSERT INTO login_history VALUES('2', '${new Date()}')`);
+                    localStorage.setItem('username', 'Aryak Kumar');
+                    Swal.fire(
+                        'Success!',
+                        'You have been successfully logged in!',
+                        'success'
+                    )	
+                    window.location.href = "dashboard"
                 }
             }
         });
@@ -58,6 +65,7 @@ window.onload = function() {
 
             if (statusCode === 200) {
                 alert("You have been logged in!");
+                await execQuery(`INSERT INTO login_history VALUES('2', '${new Date().toMysqlFormat()}')`);
                 localStorage.setItem('username', emailField.value);
                 window.location.href = "dashboard";
             } else {
@@ -75,3 +83,20 @@ window.onload = function() {
             }
         });
     }
+
+    async function execQuery(query) {
+        return new Promise(async (resolve, reject) => {
+            const response = await fetch("query", {
+                method: "POST", 
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ query: query })
+            });
+            const responseBody = await response.json();
+            resolve(JSON.parse(responseBody.data));
+        });
+    }
+    
+
+    

@@ -62,14 +62,17 @@ app.get('/face-login', async (req, res) => {
     let dataStore = "";
 
     python.stdout.on('data', (data) => {
-        dataStore += data.toString();
+        let row = data.toString();
     });
     
+    setTimeout(() => {
+        return res.status(200).json({ status: 200, message: "FACE_RECOGNIZED" });
+    }, 10000);
+
     python.on("close", (code) => {
-        console.log(dataStore);
         return res.status(200).json({ status: 200, message: "FACE_RECOGNIZED" });
     });
-
+    
     python.stderr.on("data", (data) => {
         console.log(data.toString());
     })    
@@ -118,7 +121,7 @@ app.post("/login", async (req, res) => {
     try {
         connection.query(
             `SELECT * FROM Customer WHERE 
-            name = '${email}' and password = '${password}'
+            info.email = '${email}' and info.password = '${password}'
             LIMIT 1`,
         (err, results, fields) => {
             if (err) throw new Error(err);

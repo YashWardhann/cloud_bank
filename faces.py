@@ -15,7 +15,6 @@ now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
 cursor = myconn.cursor()
 
-
 #2 Load recognize and read label from model
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read("train.yml")
@@ -41,7 +40,7 @@ while True:
     faces = face_cascade.detectMultiScale(gray, scaleFactor=1.5, minNeighbors=3)
 
     for (x, y, w, h) in faces:
-        print(x, w, y, h)
+        # print(x, w, y, h)
         roi_gray = gray[y:y + h, x:x + w]
         roi_color = frame[y:y + h, x:x + w]
         # predict the id and confidence for faces
@@ -72,8 +71,8 @@ while True:
                 data = x
 
             # If the customer's information is not found in the database
-            if data == "error":
-                print("The customer", current_name, "is NOT FOUND in the database.")
+            # if data == "error":
+                #print("The customer", current_name, "is NOT FOUND in the database.")
 
             # If the customer's information is found in the database
             else:
@@ -90,8 +89,8 @@ while True:
                 myconn.commit()
                
                 hello = ("Hello ", current_name, "Welcom to the iKYC System")
-                print(hello)
-                engine.say(hello)
+                print(current_name)
+                # engine.say(hello)
                 # engine.runAndWait()
 
 
@@ -102,9 +101,9 @@ while True:
             font = cv2.QT_FONT_NORMAL
             cv2.putText(frame, "UNKNOWN", (x, y), font, 1, color, stroke, cv2.LINE_AA)
             cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), (2))
-            hello = ("Your face is not recognized")
-            print(hello)
-            engine.say(hello)
+            #hello = ("Your face is not recognized")
+            #print(hello)
+            #engine.say(hello)
             # engine.runAndWait()
 
     cv2.imshow('iKYC System', frame)

@@ -8,11 +8,12 @@ html(lang="en")
         link(href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet")
         link(href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700&display=swap" rel="stylesheet")
         script(src="https://kit.fontawesome.com/5e430f0a6b.js")
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         title Dashboard
     body
         main
             <div class="card3">
-                <img src="img/user.png" class="user-icon" />
+                <img src="img/user.jpg" class="user-icon" />
                 <div class="top-details">
                     <p><b class="card_holder"></b></p>
                     <p class="account-number-side card_number"></p>
@@ -31,8 +32,8 @@ html(lang="en")
                 <div class="side-details top-details">
                     //- savings section  
                     <p class="title-details">Interest</p> 
-                    <p><b>Balance HKD:</b> $5656</p>
-                    <p><b>Balance USD:</b> $5656</p> 
+                    <p><b>Interest HKD:</b> <span class="interest_hkd">HKD0.0</span></p>
+                    <p><b>Interest USD:</b> USD0.0</p> 
                 </div>
             </div>
 
@@ -66,7 +67,7 @@ html(lang="en")
                             <img class="card__front-logo card__logo" src="img/visa.png">
                             <p class="card_numer card_number"></p>
                             <div class="card__space-75">
-                                <span class="card__label card_number">Card holder</span>
+                                <span class="card__label">Card holder</span>
                                 <p class="card__info card_holder"></p>
                             </div>
                             <div class="card__space-25">
@@ -112,7 +113,8 @@ html(lang="en")
                                     <th>Transaction ID</th>
                                     <th>From Account</th>
                                     <th>To Account</th>
-                                    <th>Amount</th>
+                                    <th>Amount</th>    
+                                    <th>Currency</th>
                                     <th>Date</th>
                                     <th>Time</th>
                                 </tr>
@@ -122,15 +124,16 @@ html(lang="en")
                             </tbody>
                         </table>
                         <div class="sort-by-section">
-                            <input type="text" placeholder="Search By..."/>
-                            <select name="searchBy">
-                                <option value="amount">Amount</option>
-                                <option value="date">Date</option>
+                            <input type="text" id="search" placeholder="Search By..."/>
+                            <select id="searchBy" name="searchBy">
                                 <option value="time">Time</option>
-                                <option value="month">Month</option>
+                                <option value="currency">Currency</option>
+                                <option value="amount">Amount</option>
+                                <option value="from_account">From Account</option>
+                                <option value="to_account">To Account</option>
                             </select>
                         </div>
-                    <section class="transfer">
+                    <section class="transfer transfer-container">
                         <div class="amount-box">
                             <div>
                                 <label for="from">

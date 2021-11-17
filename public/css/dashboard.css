@@ -1,5 +1,5 @@
 body {
-    overflow: hidden;
+    overflow-x: hidden;
 }
 main {
     position: absolute;
@@ -11,12 +11,12 @@ main {
 }
 
 .card3{
-    position: absolute;
-    left: 840px;
-    top: -150px;
+    position: fixed;
+    right: 0;
+    top: 0px;
     padding-top: 25px;
-    height: 900px;
-    width: 22%;
+    height: 100%;
+    width: 18%;
     background-color: #fff;
     border-left-style: solid;
     border-left-width: 1px;
@@ -113,7 +113,7 @@ section {
 }
 
 .nav {
-    position: absolute;
+    position: fixed;
     top: 0; 
     left: 18%;
     width: 82%;
@@ -129,7 +129,7 @@ section {
 .menu {
     float: left;
     width: 18%;
-    position: relative;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100%;
@@ -231,11 +231,15 @@ section {
 
 }
 
+table {
+    top: 48px !important;
+}
 .card-container {
     position: relative;
     top: 90px;
     display: block;
     left: 80px;
+    margin-bottom: 20px;
 }
 .card {
     position: absolute;

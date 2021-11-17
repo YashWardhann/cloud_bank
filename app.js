@@ -27,13 +27,13 @@ app.use(express.json());
 app.set("view engine", "pug");
 app.set("views", "./views");
 
-// Connect to mysql 
-// const connection = mysql.createConnection({
-//     host: "localhost", 
-//     user: "root", 
-//     password: "", 
-//     database: "karyak"
-// });
+//Connect to mysql 
+const connection = mysql.createConnection({
+    host: "localhost", 
+    user: "root", 
+    password: "", 
+    database: "karyak"
+});
 
 app.use(express.static(path.join(__dirname, "public")));
 

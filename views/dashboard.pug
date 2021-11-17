@@ -11,15 +11,28 @@ html(lang="en")
         title Dashboard
     body
         main
-            <div class="nav">
-                <div class="user-settings">
-                    <img src="img/user.png" class="user-icon" />
-                    <i class="fas fa-caret-down dropdwown-icon" onclick="toggleUserMenu()"></i>
-                    <div class="user-menu" id="user-menu">
-                        <p>Field A</p>
-                        <p>Field B</p>
-                        <p>Field C</p>
-                    </div>
+            <div class="card3">
+                <img src="img/user.png" class="user-icon" />
+                <div class="top-details">
+                    <p><b class="card_holder"></b></p>
+                    <p class="account-number-side card_number"></p>
+                </div>
+                <div class="side-details top-details">
+                    <p class="title-details">Current Account</p>
+                    <p><b>Balance HKD:</b> <span class="current_balance_hkd"></span></p>
+                    <p><b>Balance USD:</b> <span class="current_balance_usd"></span></p>
+                </div>
+                <div class="side-details top-details">
+                    //- savings section 
+                    <p class="title-details">Savings Account</p>  
+                    <p><b>Balance HKD:</b> <span class="savings_balance_hkd"></span></p>
+                    <p><b>Balance USD:</b> <span class="savings_balance_usd"></span></p>
+                </div>
+                <div class="side-details top-details">
+                    //- savings section  
+                    <p class="title-details">Interest</p> 
+                    <p><b>Balance HKD:</b> $5656</p>
+                    <p><b>Balance USD:</b> $5656</p> 
                 </div>
             </div>
 
@@ -67,7 +80,7 @@ html(lang="en")
                         <div class="card__front card__part">
                             <img class="card__front-square card__square" src="img/dbs.png">
                             <img class="card__front-logo card__logo" src="img/visa.png">
-                            <p class="card_numer"></p>
+                            <p class="card_numer card_number"></p>
                             <div class="card__space-75">
                                 <span class="card__label">Card holder</span>
                                 <p class="card__info card_holder"></p>
@@ -76,31 +89,6 @@ html(lang="en")
                                 <span class="card__label">Expires</span>
                                 <p class="card__info">03/24</p>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="card3">
-                        <img src="img/user.png" class="user-icon" />
-                        <div class="top-details">
-                            <p><b class="card_holder"></b></p>
-                            <p class="account-number-side card_number"></p>
-                        </div>
-                        <div class="side-details top-details">
-                            <p class="title-details">Current Account</p>
-                            <p><b>Balance HKD:</b> <span class="current_balance_hkd"></span></p>
-                            <p><b>Balance USD:</b> <span class="current_balance_usd"></span></p>
-                        </div>
-                        <div class="side-details top-details">
-                            //- savings section 
-                            <p class="title-details">Savings Account</p>  
-                            <p><b>Balance HKD:</b> <span class="savings_balance_hkd"></span></p>
-                            <p><b>Balance USD:</b> <span class="savings_balance_usd"></span></p>
-                        </div>
-                        <div class="side-details top-details">
-                            //- savings section  
-                            <p class="title-details">Interest</p> 
-                            <p><b>Balance HKD:</b> $5656</p>
-                            <p><b>Balance USD:</b> $5656</p> 
                         </div>
                     </div>
 

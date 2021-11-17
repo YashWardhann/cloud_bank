@@ -134,10 +134,13 @@ html(lang="en")
                             </tbody>
                         </table>
                         <div class="sort-by-section">
-                            <button><p>Sort By Month</p></button>
-                            <button><p>Sort By Date</p></button>
-                            <button><p>Sort By Amount</p></button>
-                            <button><p>Sort By Time</p></button>
+                            <input type="text" placeholder="Search By..."/>
+                            <select name="searchBy">
+                                <option value="amount">Amount</option>
+                                <option value="date">Date</option>
+                                <option value="time">Time</option>
+                                <option value="month">Month</option>
+                            </select>
                         </div>
                     <section class="transfer">
                         <div class="amount-box">

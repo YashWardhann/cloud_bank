@@ -103,36 +103,6 @@ html(lang="en")
                             <p><b>Balance USD:</b> $5656</p> 
                         </div>
                     </div>
-                    //- section(class="dashboard display-section")
-                    //-     <div class="balance-details">
-                    //-         <table>
-                    //-             <thead>
-                    //-                 <tr>
-                    //-                     <th>Account Number</th>
-                    //-                     <th>Type of Account</th>
-                    //-                     <th>Balance [HKD]</th>
-                    //-                     <th>Balance[USD]</th>
-                    //-                     <th>Account Holder's Name</th>
-                    //-                 </tr>
-                    //-             </thead>
-                    //-             <tbody>
-                    //-                 <tr>
-                    //-                     <td>SOUMIL123</td>
-                    //-                     <td>Current</td>
-                    //-                     <td>1000</td>
-                    //-                     <td>100</td>
-                    //-                     <td>Soumil Kumar</td>
-                    //-                 </tr>
-                    //-                 <tr>
-                    //-                     <td>SOUMIL123</td>
-                    //-                     <td>Current</td>
-                    //-                     <td>1000</td>
-                    //-                     <td>100</td>
-                    //-                     <td>Soumil Kumar</td>
-                    //-                 </tr>
-                    //-             </tbody>
-                    //-         </table>
-                    //-     </div> 
 
                     section(class="table-container loginhistory balance-details")
                         <table id="login-history" class="table is-striped" style="width:100%">
@@ -148,7 +118,7 @@ html(lang="en")
                             </tbody>
                         </table>
                     section(class="table-container transactions balance-details")
-                        <table id="example" class="table is-striped" style="width:100%">
+                        <table id="example" class="table is-striped" style="overflow:auto; width:100%">
                             <thead>
                                 <tr>
                                     <th>Transaction ID</th>
@@ -163,6 +133,12 @@ html(lang="en")
                                 
                             </tbody>
                         </table>
+                        <div class="sort-by-section">
+                            <button><p>Sort By Month</p></button>
+                            <button><p>Sort By Date</p></button>
+                            <button><p>Sort By Amount</p></button>
+                            <button><p>Sort By Time</p></button>
+                        </div>
                     <section class="transfer">
                         <div class="amount-box">
                             <div>

@@ -6,7 +6,25 @@ $(document).ready(async function() {
 	
 	// Get account data 
 	const accountData = await execQuery(`SELECT * FROM accounts WHERE user_id='${userData.customer_id}'`);
-	console.log(accountData);
+	
+	let currentAccountID;
+	let savingAccountID; 
+
+	for (let data of accountData) {
+		if (data.account_type === "savings") {
+			savingAccountID = data.account_number;
+		} 
+		if (data.account_type === "current") {
+			currentAccountID = data.account_number;
+		}
+	}
+
+	// Get current account details 
+	const currentAccountDetails = (await execQuery(`SELECT * FROM current WHERE account_number='${currentAccountID}'`))[0];
+	const savingAccountDetails = (await execQuery(`SELECT * FROM savings WHERE account_number='${savingAccountID}'`))[0];
+
+	console.log(currentAccountDetails);
+	console.log(savingAccountDetails);
 
 	const transactionsData = await execQuery(`SELECT * FROM transactions WHERE to_account='${accountData[1].account_number}' OR from_account='${accountData[1].account_number}'`);
 	console.log(transactionsData);
@@ -14,6 +32,11 @@ $(document).ready(async function() {
 	// Get login history 
 	const loginHistory = await execQuery(`SELECT * FROM login_history WHERE user_id='${userData.customer_id}'`);
 	console.log(loginHistory);
+
+	$(".current_balance_hkd").text(`$${currentAccountDetails.balance_hkd}`);
+	$(".savings_balance_hkd").text(`$${savingAccountDetails.balance_hkd}`);
+	$(".current_balance_usd").text(`$${currentAccountDetails.balance_usd}`);
+	$(".savings_balance_usd").text(`$${currentAccountDetails.balance_hkd}`);
 
 	let cardNumber = String(accountData[0].account_number);
 	let newString = "";
@@ -61,24 +84,35 @@ $(document).ready(async function() {
 
 	
 $('.confirm-transfer').click(async function() {
-	const fromAccountType = $(".from-dropdown").val();
+	const fromAccountType = $(".from-dropdown").val().toLowerCase();
 	const toAccount = $("#acct-number").val();
-	const currency = $("#currency").val();
+	const currency = $("#currency").val().toLowerCase();
 	const amount = $("#amount").val();
 
 	let fromAccount; 
-	for (let data of accountData) {
-		console.log(data);
-		if (data.account_type === fromAccountType.toLowerCase()) {
-			fromAccount = data.account_number;
-			break;
-		}
+	
+	if (fromAccountType === "savings") {
+		fromAccount = savingAccountID;
+	} else {
+		fromAccount = currentAccountID;
 	}
 
 	// Generate the SQL statement 
-	const sqlQuery = `INSERT INTO transactions VALUES('2', '${fromAccount}', '${toAccount}', '${amount}', '${currency}', '${Date.now()}')`;
-	const res = await execQuery(sqlQuery);
+	let sqlQuery = `INSERT INTO transactions VALUES('5', '${fromAccount}', '${toAccount}', '${amount}', '${currency}', '${Date.now()}')`;
+	await execQuery(sqlQuery);
 	alert("Transfer is successful!");
+
+
+	// Update the account balances 
+	sqlQuery = `UPDATE savings SET balance_${currency} = balance_${currency} + ${amount} WHERE account_number='${toAccount}'`;
+	await execQuery(sqlQuery);
+	
+	sqlQuery = `UPDATE ${fromAccountType} SET balance_${currency} = balance_${currency} - ${amount} WHERE account_number='${fromAccount}'`;
+	await execQuery(sqlQuery);
+
+	
+
+	
 });
 
 $(".item").click(e => {

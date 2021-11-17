@@ -72,7 +72,7 @@ $(document).ready(async function() {
 	$(".current_balance_hkd").text(`$${currentAccountDetails['balance.hkd']}`);
 	$(".savings_balance_hkd").text(`$${savingAccountDetails['balance.hkd']}`);
 	$(".current_balance_usd").text(`$${currentAccountDetails['balance.usd']}`);
-	$(".savings_balance_usd").text(`$${currentAccountDetails['balance.usd']}`);
+	$(".savings_balance_usd").text(`$${savingAccountDetails['balance.usd']}`);
 
 	let cardNumber = String(currentAccountDetails.account_num);
 	let newString = "";
